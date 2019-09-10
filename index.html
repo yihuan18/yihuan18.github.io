@@ -187,27 +187,42 @@
 <li>自动灾难恢复</li>
 <li>外键约束</li>
 <li>AUTO_INCREMENT等功能</li>
-<li>适用于写密集表<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3></li>
+<li>适用于写密集表</li>
+</ul>
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><ul>
 <li>不支持事务</li>
 <li>不支持外键（父子表关联）</li>
-<li>适用于读密集表<h3 id="MEMORY"><a href="#MEMORY" class="headerlink" title="MEMORY"></a>MEMORY</h3></li>
+<li>适用于读密集表</li>
+</ul>
+<h3 id="MEMORY"><a href="#MEMORY" class="headerlink" title="MEMORY"></a>MEMORY</h3><ul>
 <li>使用系统内存存储，崩溃后会丢失</li>
 <li>不可用可变数据类型</li>
-<li>适用于小数据、临时数据、可丢失数据<h3 id="InnoDB和MyISAM区别"><a href="#InnoDB和MyISAM区别" class="headerlink" title="InnoDB和MyISAM区别"></a>InnoDB和MyISAM区别</h3></li>
+<li>适用于小数据、临时数据、可丢失数据</li>
+</ul>
+<h3 id="InnoDB和MyISAM区别"><a href="#InnoDB和MyISAM区别" class="headerlink" title="InnoDB和MyISAM区别"></a>InnoDB和MyISAM区别</h3><ul>
 <li>InnoDB支持事务</li>
 <li>InnoDB支持在线热备份；MyISAM崩溃后损坏概率比InnoDB高，恢复速度也慢</li>
 <li>MyISAM支持表级锁，不支持行级锁</li>
 <li>MyISAM支持全文索引、地理空间索引</li>
-<li>MYISAM不支持外键<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3>MySQL的基本存储结构是页，各个数据页组成一个双向链表，数据页中的记录组成单向链表；检索需要遍历双向链表<h4 id="提高检索速度"><a href="#提高检索速度" class="headerlink" title="提高检索速度"></a>提高检索速度</h4>无序数据变有序：使用BTree索引或Hash索引<br>维持平衡树需要额外开销，所以降低了增删改的效率<h3 id="哈希索引与BTree索引的区别"><a href="#哈希索引与BTree索引的区别" class="headerlink" title="哈希索引与BTree索引的区别"></a>哈希索引与BTree索引的区别</h3></li>
+<li>MYISAM不支持外键</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>MySQL的基本存储结构是页，各个数据页组成一个双向链表，数据页中的记录组成单向链表；检索需要遍历双向链表</p>
+<h4 id="提高检索速度"><a href="#提高检索速度" class="headerlink" title="提高检索速度"></a>提高检索速度</h4><p>无序数据变有序：使用BTree索引或Hash索引<br>维持平衡树需要额外开销，所以降低了增删改的效率</p>
+<h3 id="哈希索引与BTree索引的区别"><a href="#哈希索引与BTree索引的区别" class="headerlink" title="哈希索引与BTree索引的区别"></a>哈希索引与BTree索引的区别</h3><ul>
 <li>哈希索引不能利用索引排序</li>
 <li>哈希索引不支持最左匹配原则</li>
 <li>有大量重复键值情况下哈希索引效率很低</li>
-<li>不支持范围查询<h3 id="聚集索引与非聚集索引"><a href="#聚集索引与非聚集索引" class="headerlink" title="聚集索引与非聚集索引"></a>聚集索引与非聚集索引</h3>聚集索引是以主键创建的索引，非聚集索引是以非主键创建的索引</li>
-<li>聚集索引在叶子节点存储表中数据，非聚集索引存储的是主键和索引列（即非聚集索引需要表明是索引的哪一列）</li>
-<li>非聚集索引查到数据，再去主键查找数据<h3 id="最左匹配原则"><a href="#最左匹配原则" class="headerlink" title="最左匹配原则"></a>最左匹配原则</h3>索引从左到右依次匹配直到遇到范围查询或某个匹配没有<br>比如(a,b,c,d)，查询a=1 and b=2 and c&gt;3 and d=4,则只能匹配a、b、c，因为c是范围查询，不能匹配d<h3 id="in自动优化顺序"><a href="#in自动优化顺序" class="headerlink" title="= in自动优化顺序"></a>= in自动优化顺序</h3>不需要考虑=和in的顺序，mysql自动优化<br>如(a,b,c,d)索引，查询c=3,b=2,a=1,d=0依然可以使用索引<h3 id="索引的使用"><a href="#索引的使用" class="headerlink" title="索引的使用"></a>索引的使用</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//1、创建数据表时使用主键</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT</span><br><span class="line">);</span><br><span class="line">//2、<span class="keyword">ALTER</span> <span class="keyword">TABLE</span></span><br><span class="line">//其中column_list指出对哪些列进行索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_list)</span><br><span class="line">//用于全文索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> FULLTEXT index_name(olumu_name)</span><br><span class="line">//例子，添加对商品分类的索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> classify_index(Classify_Description)‘</span><br><span class="line">//<span class="number">3</span>、<span class="keyword">CREATE</span> <span class="keyword">INDEX</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> <span class="keyword">table</span> (column_list)</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>不支持范围查询</li>
 </ul>
+<h3 id="聚集索引与非聚集索引"><a href="#聚集索引与非聚集索引" class="headerlink" title="聚集索引与非聚集索引"></a>聚集索引与非聚集索引</h3><p>聚集索引是以主键创建的索引，非聚集索引是以非主键创建的索引</p>
+<ul>
+<li>聚集索引在叶子节点存储表中数据，非聚集索引存储的是主键和索引列（即非聚集索引需要表明是索引的哪一列）</li>
+<li>非聚集索引查到数据，再去主键查找数据</li>
+</ul>
+<h3 id="最左匹配原则"><a href="#最左匹配原则" class="headerlink" title="最左匹配原则"></a>最左匹配原则</h3><p>索引从左到右依次匹配直到遇到范围查询或某个匹配没有<br>比如(a,b,c,d)，查询a=1 and b=2 and c&gt;3 and d=4,则只能匹配a、b、c，因为c是范围查询，不能匹配d</p>
+<h3 id="in自动优化顺序"><a href="#in自动优化顺序" class="headerlink" title="= in自动优化顺序"></a>= in自动优化顺序</h3><p>不需要考虑=和in的顺序，mysql自动优化<br>如(a,b,c,d)索引，查询c=3,b=2,a=1,d=0依然可以使用索引</p>
+<h3 id="索引的使用"><a href="#索引的使用" class="headerlink" title="索引的使用"></a>索引的使用</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//1、创建数据表时使用主键</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT</span><br><span class="line">);</span><br><span class="line">//2、<span class="keyword">ALTER</span> <span class="keyword">TABLE</span></span><br><span class="line">//其中column_list指出对哪些列进行索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_list)</span><br><span class="line">//用于全文索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> FULLTEXT index_name(olumu_name)</span><br><span class="line">//例子，添加对商品分类的索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> classify_index(Classify_Description)‘</span><br><span class="line">//<span class="number">3</span>、<span class="keyword">CREATE</span> <span class="keyword">INDEX</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> <span class="keyword">table</span> (column_list)</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//删除索引</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> [table_name] <span class="keyword">drop</span> <span class="keyword">index</span> [index_name]</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> [table_name]</span><br></pre></td></tr></table></figure>
@@ -223,7 +238,9 @@
 <li>选择区分度高的作为索引</li>
 <li>索引列不能参与计算</li>
 <li>尽可能扩展索引而不是新建索引</li>
-<li>索引选择限制最严格的一个匹配<h2 id="B树与B-树"><a href="#B树与B-树" class="headerlink" title="B树与B+树"></a>B树与B+树</h2></li>
+<li>索引选择限制最严格的一个匹配</li>
+</ul>
+<h2 id="B树与B-树"><a href="#B树与B-树" class="headerlink" title="B树与B+树"></a>B树与B+树</h2><ul>
 <li>根节点孩子数&gt;=2</li>
 <li>每个中间节点有k-1个元素和k个孩子（ceil(m/2)=&lt;k&lt;=m）</li>
 <li>每个叶子节点有k-1个元素</li>
