@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="https://yihuan18.github.io">
   <title>Mysql知识点整理 | Yihuan的洞穴</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MySQL存储引擎不同的存储内容的技术就是存储引擎 InnoDB 适合处理多重并发更新请求 支持事务 自动灾难恢复 外键约束 AUTO_INCREMENT等功能 适用于写密集表  MyISAM 不支持事务 不支持外键（父子表关联） 适用于读密集表  MEMORY 使用系统内存存储，崩溃后会丢失 不可用可变数据类型 适用于小数据、临时数据、可丢失数据  InnoDB和MyISAM区别 InnoDB支">
+  <meta name="description" content="MySQL主要整理一下在面试中mysql常被问到到基础性知识">
 <meta name="keywords" content="面试,mysql,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mysql知识点整理">
 <meta property="og:url" content="https://yihuan18.github.io/2019/09/10/Mysql知识点整理/index.html">
 <meta property="og:site_name" content="Yihuan的洞穴">
-<meta property="og:description" content="MySQL存储引擎不同的存储内容的技术就是存储引擎 InnoDB 适合处理多重并发更新请求 支持事务 自动灾难恢复 外键约束 AUTO_INCREMENT等功能 适用于写密集表  MyISAM 不支持事务 不支持外键（父子表关联） 适用于读密集表  MEMORY 使用系统内存存储，崩溃后会丢失 不可用可变数据类型 适用于小数据、临时数据、可丢失数据  InnoDB和MyISAM区别 InnoDB支">
+<meta property="og:description" content="MySQL主要整理一下在面试中mysql常被问到到基础性知识">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://img-blog.csdn.net/2018032420113990?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
 <meta property="og:image" content="https://img-blog.csdn.net/20180325001555181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:updated_time" content="2019-09-10T09:35:04.444Z">
+<meta property="og:updated_time" content="2019-09-10T09:40:13.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mysql知识点整理">
-<meta name="twitter:description" content="MySQL存储引擎不同的存储内容的技术就是存储引擎 InnoDB 适合处理多重并发更新请求 支持事务 自动灾难恢复 外键约束 AUTO_INCREMENT等功能 适用于写密集表  MyISAM 不支持事务 不支持外键（父子表关联） 适用于读密集表  MEMORY 使用系统内存存储，崩溃后会丢失 不可用可变数据类型 适用于小数据、临时数据、可丢失数据  InnoDB和MyISAM区别 InnoDB支">
+<meta name="twitter:description" content="MySQL主要整理一下在面试中mysql常被问到到基础性知识">
 <meta name="twitter:image" content="https://img-blog.csdn.net/2018032420113990?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
     <link rel="alternative" href="/atom.xml" title="Yihuan的洞穴" type="application/atom+xml">
@@ -182,7 +182,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>不同的存储内容的技术就是存储引擎</p>
+        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><p>主要整理一下在面试中mysql常被问到到基础性知识</p>
+<a id="more"></a>
+
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>不同的存储内容的技术就是存储引擎</p>
 <h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><ul>
 <li>适合处理多重并发更新请求</li>
 <li>支持事务</li>
