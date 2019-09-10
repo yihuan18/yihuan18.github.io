@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yihuan18.github.io">
-  <title>Tag: 博客 | Yihuan的洞穴</title>
+  <title>Mysql知识点整理 | Yihuan的洞穴</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="电子科技大学，java后端开发菜鸟程序媛，一同成长">
-<meta name="keywords" content="java,vim,spring,springboot,程序媛">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yihuan的洞穴">
-<meta property="og:url" content="https://yihuan18.github.io/tags/博客/index.html">
+  <meta name="description" content="#MySQL ##存储引擎 不同的存储内容的技术就是存储引擎 ###InnoDB  适合处理多重并发更新请求 支持事务 自动灾难恢复 外键约束 AUTO_INCREMENT等功能 适用于写密集表  ###MyISAM  不支持事务 不支持外键（父子表关联） 适用于读密集表  ###MEMORY  使用系统内存存储，崩溃后会丢失 不可用可变数据类型 适用于小数据、临时数据、可丢失数据  ###Inn">
+<meta name="keywords" content="面试,mysql,java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql知识点整理">
+<meta property="og:url" content="https://yihuan18.github.io/2019/09/10/Mysql知识点整理/index.html">
 <meta property="og:site_name" content="Yihuan的洞穴">
-<meta property="og:description" content="电子科技大学，java后端开发菜鸟程序媛，一同成长">
+<meta property="og:description" content="#MySQL ##存储引擎 不同的存储内容的技术就是存储引擎 ###InnoDB  适合处理多重并发更新请求 支持事务 自动灾难恢复 外键约束 AUTO_INCREMENT等功能 适用于写密集表  ###MyISAM  不支持事务 不支持外键（父子表关联） 适用于读密集表  ###MEMORY  使用系统内存存储，崩溃后会丢失 不可用可变数据类型 适用于小数据、临时数据、可丢失数据  ###Inn">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://img-blog.csdn.net/2018032420113990?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:image" content="https://img-blog.csdn.net/20180325001555181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="og:updated_time" content="2019-09-10T09:28:21.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yihuan的洞穴">
-<meta name="twitter:description" content="电子科技大学，java后端开发菜鸟程序媛，一同成长">
+<meta name="twitter:title" content="Mysql知识点整理">
+<meta name="twitter:description" content="#MySQL ##存储引擎 不同的存储内容的技术就是存储引擎 ###InnoDB  适合处理多重并发更新请求 支持事务 自动灾难恢复 外键约束 AUTO_INCREMENT等功能 适用于写密集表  ###MyISAM  不支持事务 不支持外键（父子表关联） 适用于读密集表  ###MEMORY  使用系统内存存储，崩溃后会丢失 不可用可变数据类型 适用于小数据、临时数据、可丢失数据  ###Inn">
+<meta name="twitter:image" content="https://img-blog.csdn.net/2018032420113990?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
   
     <link rel="alternative" href="/atom.xml" title="Yihuan的洞穴" type="application/atom+xml">
   
@@ -158,64 +162,363 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mysql知识点整理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/Hexo博客搭建与美化/" class="archive-article-date">
-  	<time datetime="2019-09-10T09:05:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/Hexo博客搭建与美化/">Hexo博客搭建与美化</a>
+    <h1 class="article-title" itemprop="name">
+      Mysql知识点整理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/10/Mysql知识点整理/" class="archive-article-date">
+  	<time datetime="2019-09-10T09:27:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#MySQL</p>
+<p>##存储引擎</p>
+<p>不同的存储内容的技术就是存储引擎</p>
+<p>###InnoDB</p>
+<ul>
+<li>适合处理多重并发更新请求</li>
+<li>支持事务</li>
+<li>自动灾难恢复</li>
+<li>外键约束</li>
+<li>AUTO_INCREMENT等功能</li>
+<li>适用于写密集表</li>
+</ul>
+<p>###MyISAM</p>
+<ul>
+<li>不支持事务</li>
+<li>不支持外键（父子表关联）</li>
+<li>适用于读密集表</li>
+</ul>
+<p>###MEMORY</p>
+<ul>
+<li>使用系统内存存储，崩溃后会丢失</li>
+<li>不可用可变数据类型</li>
+<li>适用于小数据、临时数据、可丢失数据</li>
+</ul>
+<p>###InnoDB和MyISAM区别</p>
+<ul>
+<li>InnoDB支持事务</li>
+<li>InnoDB支持在线热备份；MyISAM崩溃后损坏概率比InnoDB高，恢复速度也慢</li>
+<li>MyISAM支持表级锁，不支持行级锁</li>
+<li>MyISAM支持全文索引、地理空间索引</li>
+<li>MYISAM不支持外键</li>
+</ul>
+<p>##索引</p>
+<p>###问题</p>
+<p>MySQL的基本存储结构是页，各个数据页组成一个双向链表，数据页中的记录组成单向链表；检索需要遍历双向链表</p>
+<p>####提高检索速度</p>
+<p>无序数据变有序：使用BTree索引或Hash索引</p>
+<p>维持平衡树需要额外开销，所以降低了增删改的效率</p>
+<p>###哈希索引与BTree索引的区别</p>
+<ul>
+<li>哈希索引不能利用索引排序</li>
+<li>哈希索引不支持最左匹配原则</li>
+<li>有大量重复键值情况下哈希索引效率很低</li>
+<li>不支持范围查询</li>
+</ul>
+<p>###聚集索引与非聚集索引</p>
+<p>聚集索引是以主键创建的索引，非聚集索引是以非主键创建的索引</p>
+<ul>
+<li>聚集索引在叶子节点存储表中数据，非聚集索引存储的是主键和索引列（即非聚集索引需要表明是索引的哪一列）</li>
+<li>非聚集索引查到数据，再去主键查找数据</li>
+</ul>
+<p>###最左匹配原则</p>
+<p>索引从左到右依次匹配直到遇到范围查询或某个匹配没有</p>
+<p>比如(a,b,c,d)，查询a=1 and b=2 and c&gt;3 and d=4,则只能匹配a、b、c，因为c是范围查询，不能匹配d</p>
+<p>###= in自动优化顺序</p>
+<p>不需要考虑=和in的顺序，mysql自动优化</p>
+<p>如(a,b,c,d)索引，查询c=3,b=2,a=1,d=0依然可以使用索引</p>
+<p>###索引的使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//1、创建数据表时使用主键</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">table</span>(</span><br><span class="line">	<span class="keyword">id</span> <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT</span><br><span class="line">);</span><br><span class="line">//2、<span class="keyword">ALTER</span> <span class="keyword">TABLE</span></span><br><span class="line">//其中column_list指出对哪些列进行索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> index_name (column_list)</span><br><span class="line">//用于全文索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> FULLTEXT index_name(olumu_name)</span><br><span class="line">//例子，添加对商品分类的索引</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> <span class="keyword">table</span> <span class="keyword">ADD</span> <span class="keyword">INDEX</span> classify_index(Classify_Description)‘</span><br><span class="line">//<span class="number">3</span>、<span class="keyword">CREATE</span> <span class="keyword">INDEX</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">ON</span> <span class="keyword">table</span> (column_list)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//删除索引</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">INDEX</span> [indexName] <span class="keyword">ON</span> <span class="keyword">table</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> [table_name] <span class="keyword">drop</span> <span class="keyword">index</span> [index_name]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> [table_name]</span><br></pre></td></tr></table></figure>
+
+<p>###索引分类</p>
+<p><strong>普通索引INDEX</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//VARCHAR等需要指定索引长度</span><br><span class="line">INDEX index_name(VARCHAR(20))</span><br></pre></td></tr></table></figure>
+
+<p><strong>唯一索引UNIQUE：必须唯一，允许为空</strong></p>
+<p><strong>主键索引：必须唯一，不允许为空</strong></p>
+<p><strong>全文索引：仅可用于MyISAM</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//对content这一列进行全文索引</span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> article <span class="keyword">WHERE</span> <span class="keyword">MATCH</span>( <span class="keyword">content</span>) AGAINST(<span class="string">'想查询的字符串'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>###总结</p>
+<ul>
+<li>最左匹配原则：一直向右匹配直到范围查询</li>
+<li>选择区分度高的作为索引</li>
+<li>索引列不能参与计算</li>
+<li>尽可能扩展索引而不是新建索引</li>
+<li>索引选择限制最严格的一个匹配</li>
+</ul>
+<p>##B树与B+树</p>
+<ul>
+<li>根节点孩子数&gt;=2</li>
+<li>每个中间节点有k-1个元素和k个孩子（ceil(m/2)=&lt;k&lt;=m）</li>
+<li>每个叶子节点有k-1个元素</li>
+<li>叶子节点位于同一层</li>
+</ul>
+<p><img src="https://img-blog.csdn.net/2018032420113990?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>B+树</p>
+<p>中间元素只做索引，叶子节点存储数据（有序链表）</p>
+<p><img src="https://img-blog.csdn.net/20180325001555181?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pfcnlhbg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt></p>
+<p>##锁</p>
+<p>###事务的四大特性</p>
+<ul>
+<li>原子性：事务所有操作，要么全部完成，要么全部不完成</li>
+<li>一致性：事务执行前执行后都必须处于一致性状态，比如A给B转账，总数必须不变</li>
+<li>隔离性：数据库允许多个并发事务同时进行读写和修改的能力</li>
+<li>持久化：事务处理结束后，数据的修改是永久的</li>
+</ul>
+<p>###表锁</p>
+<p>分为表读锁和表写锁，读读不阻塞</p>
+<p>写锁优先于读锁</p>
+<p>###行锁</p>
+<p>分为共享锁和排他锁</p>
+<ul>
+<li>共享锁（读）：允许一个事务读一行，阻止其他事务获得相同数据的排他锁</li>
+<li>排他锁（写）：允许排他锁的事务更新数据，阻止其他事务获得共享锁和排他锁</li>
+</ul>
+<p>为了允许行锁表锁并存，InnoDB存在两种意向锁：</p>
+<ul>
+<li>意向共享锁：事务加行共享锁之前先获得意向共享锁</li>
+<li>意向排他锁：事务加行排他锁之前先获得意向排他锁</li>
+</ul>
+<p>###两者区别</p>
+<ul>
+<li>表锁开销小，加锁快，不会出现死锁，锁定粒度大，发生冲突概率高，并发度低</li>
+<li>行锁开销大，加锁慢，会出现死锁，锁定粒度小，发生冲突概率低，并发度高</li>
+</ul>
+<p>###MVCC和事务隔离级别</p>
+<p>InnoDB基于行锁，实现了mVCC多版本并发控制，在多种隔离级别下实现读写不阻塞</p>
+<p>脏读：读取到另一个事务未提交的数据；把读放在事务提交之后即可避免</p>
+<p>不可重复读：多次读结果不同，数量相同，但被修改了</p>
+<p>幻读：多次读结果数量不同，读的多了，读的少了</p>
+<p>事务隔离级别：</p>
+<ul>
+<li>Read uncommited：出现脏读、不可重复读、幻读</li>
+<li>Read commited：会出现不可重复读、幻读</li>
+<li>Repeatable read：出现幻读</li>
+<li>Serializable：都不会出现</li>
+</ul>
+<p>##分库分表</p>
+<p>分表：将一张表分厂多个小表，用于不同的表名</p>
+<p>分区：一个表分成多个区块，表只有一个</p>
+<p>使用分库分表：数据库中表的数据量越来越大，读写开销大</p>
+<p>###垂直切分（切分表项）</p>
+<p>按表功能模块、关系密切成都划分部署到不同库上</p>
+<p>###水平切分（切分列项）</p>
+<p>表中数据按某种规则存储到多个结构相同的表中，如按id散列、性别进行划分</p>
+<p>表太多且项目逻辑清晰进行垂直切分，单表数据量大进行水平切分</p>
+<p>###存在问题</p>
+<ul>
+<li>事务问题，数据存储到不同库上，事务管理出现困难</li>
+<li>跨库跨表连接问题，表的连接操作受限，无法连接不同分库的表，原本只需要一次查询完成的业务需要多次</li>
+</ul>
+<p>##表的优化</p>
+<ul>
+<li>限定数据范围，比如查询历史订单限制一个月</li>
+<li>读写分离：主库负责写，从库负责读</li>
+<li>垂直分区：根据数据表相关性拆分，使得行数据减小，但是主键冗余、需要管理冗余列，事务变得复杂</li>
+<li>水平分区：每部分数据拆分成多个表，带来逻辑、运维的麻烦</li>
+</ul>
+<p>##数据三大范式</p>
+<ul>
+<li>关系模式R的所有属性不能分解为更基本的数据单位（确保每一列的原子性，合并属性相同的列，避免产生冗余）</li>
+<li>关系模式满足第一范式，且R所有非主属性都完全依赖于R的每一个候选关键属性（一行数据只做一件事，如果数据重复将表拆开）</li>
+<li>关系模式满足第一范式，X是R任意属性集，X非传递依赖于R的任意一个候选关键词（数据不能存在传递关系，而是直接关系，如所在院校决定了院校电话，那么学号和所在院校建立表，所在院校和院校电话建立表）</li>
+</ul>
+<p>##慢查询</p>
+<p>开启慢查询后，MySQL会记录下查询超过指定时间的SQL语句，方便调优。</p>
+<p>对应的配置项为:slow_query_log</p>
+<p>##批处理</p>
+<p>使用Batch进行批处理，同时执行多条同样的SQL操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">PreparedStatement statement=Connection.prepareStatement(<span class="string">"sql语句"</span>);</span><br><span class="line">statement.setInt(<span class="number">1</span>,int_value);</span><br><span class="line">statement.addBatch();</span><br><span class="line">cnt++;</span><br><span class="line"><span class="keyword">if</span>(cnt%<span class="number">1000</span>==<span class="number">0</span>)&#123;</span><br><span class="line">	statement.executeBatch()</span><br><span class="line">	statment.clearBatch();</span><br><span class="line">&#125;</span><br><span class="line">statment.close();</span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yihuan18.github.io/2019/09/10/Mysql知识点整理/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/09/10/Hexo博客搭建与美化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo博客搭建与美化</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet"href="//imsun.github.io/gitment/style/default.css"> 
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://yihuan18.github.io/2019/09/10/Mysql知识点整理/",
+  owner: 'yihuan18',
+  repo: 'yihuan18.github.io',
+  oauth: {
+    client_id: 'de47c470de560347723b',
+    client_secret: '944a0b3867aabbbe9ab4f1a3d953265403fca13e',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -238,9 +541,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
