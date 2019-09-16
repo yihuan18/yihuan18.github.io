@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yihuan18.github.io">
-  <title>Tag: hexo | 兔窝|Yihuan的博客</title>
+  <title>Java NIO | 兔窝|Yihuan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="电子科技大学，java后端开发菜鸟程序媛，一同成长">
-<meta name="keywords" content="java,vim,spring,springboot,程序媛">
-<meta property="og:type" content="website">
-<meta property="og:title" content="兔窝|Yihuan的博客">
-<meta property="og:url" content="https://yihuan18.github.io/tags/hexo/index.html">
+  <meta name="description" content="主要分析java nio的基础知识和关键组件">
+<meta name="keywords" content="java,面试,nio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java NIO">
+<meta property="og:url" content="https://yihuan18.github.io/2019/09/15/Java-NIO/index.html">
 <meta property="og:site_name" content="兔窝|Yihuan的博客">
-<meta property="og:description" content="电子科技大学，java后端开发菜鸟程序媛，一同成长">
+<meta property="og:description" content="主要分析java nio的基础知识和关键组件">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ifeve.com/wp-content/uploads/2013/06/buffers-modes.png">
+<meta property="og:image" content="http://ifeve.com/wp-content/uploads/2013/06/overview-selectors.png">
+<meta property="og:updated_time" content="2019-09-16T06:53:45.498Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="兔窝|Yihuan的博客">
-<meta name="twitter:description" content="电子科技大学，java后端开发菜鸟程序媛，一同成长">
+<meta name="twitter:title" content="Java NIO">
+<meta name="twitter:description" content="主要分析java nio的基础知识和关键组件">
+<meta name="twitter:image" content="http://ifeve.com/wp-content/uploads/2013/06/buffers-modes.png">
   
     <link rel="alternative" href="/atom.xml" title="兔窝|Yihuan的博客" type="application/atom+xml">
   
@@ -158,64 +162,298 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Java-NIO" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/10/Hexo博客搭建与美化/" class="archive-article-date">
-  	<time datetime="2019-09-10T09:05:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/Hexo博客搭建与美化/">Hexo博客搭建与美化</a>
+    <h1 class="article-title" itemprop="name">
+      Java NIO
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/15/Java-NIO/" class="archive-article-date">
+  	<time datetime="2019-09-15T08:46:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>主要分析java nio的基础知识和关键组件</p>
+<a id="more"></a>
+
+<h1 id="三个关键组件"><a href="#三个关键组件" class="headerlink" title="三个关键组件"></a>三个关键组件</h1><h2 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h2><p>基本上，所有的 IO 在NIO 中都从一个Channel 开始。Channel 有点象流。 数据可以从Channel读到Buffer中，也可以从Buffer 写到Channel中。</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FileChannel : 从文件中读写数据</td>
+</tr>
+<tr>
+<td>DatagramChannel : 能通过UDP读写网络中的数据</td>
+</tr>
+<tr>
+<td>SocketChannel : 能通过TCP读写网络中的数据</td>
+</tr>
+<tr>
+<td>ServerSocketChannel : 监听新进来的TCP连接</td>
+</tr>
+</tbody></table>
+<h2 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h2><h3 id="Buffer的实现包含"><a href="#Buffer的实现包含" class="headerlink" title="Buffer的实现包含 :"></a>Buffer的实现包含 :</h3><p>ByteBuffer / CharBuffer / DoubleBuffer / FloatBuffer / IntBuffer / LongBuffer / ShortBuffer</p>
+<p>这些Buffer覆盖了你能通过IO发送的基本数据类型：byte, short, int, long, float, double 和 char。Java NIO 还有个 MappedByteBuffer，用于表示内存映射文件。</p>
+<h3 id="Buffer使用步骤："><a href="#Buffer使用步骤：" class="headerlink" title="Buffer使用步骤："></a>Buffer使用步骤：</h3><ol>
+<li>写入数据到Buffer</li>
+<li>调用<code>flip()</code>方法</li>
+<li>从Buffer中读取数据</li>
+<li>调用<code>clear()</code>方法或者<code>compact()</code>方法</li>
+</ol>
+<h3 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile aFile = <span class="keyword">new</span> RandomAccessFile(<span class="string">"data/nio-data.txt"</span>, <span class="string">"rw"</span>);</span><br><span class="line">FileChannel inChannel = aFile.getChannel();</span><br><span class="line"></span><br><span class="line"><span class="comment">//create buffer with capacity of 48 bytes</span></span><br><span class="line">ByteBuffer buf = ByteBuffer.allocate(<span class="number">48</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> bytesRead = inChannel.read(buf); <span class="comment">//read into buffer from channel.</span></span><br><span class="line"><span class="comment">//也可以直接使用buf.put()</span></span><br><span class="line"><span class="keyword">while</span> (bytesRead != -<span class="number">1</span>) &#123;</span><br><span class="line">	System.out.println(<span class="string">"Read "</span> + bytesRead);</span><br><span class="line">	buf.flip(); <span class="comment">//flip()方法将Buffer从写模式切换到读模式</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>(buf.hasRemaining())&#123;</span><br><span class="line">		System.out.print((<span class="keyword">char</span>) buf.get()); <span class="comment">// read 1 byte at a time</span></span><br><span class="line">    <span class="comment">//也可以使用inChannel.write将buffer中的数据读入channel</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	buf.clear(); <span class="comment">//clear()方法会清空整个缓冲区，compact()方法只会清除已经读过的数据。</span></span><br><span class="line">	bytesRead = inChannel.read(buf);</span><br><span class="line">&#125;</span><br><span class="line">aFile.close();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Buffer的三个重要属性："><a href="#Buffer的三个重要属性：" class="headerlink" title="Buffer的三个重要属性："></a>Buffer的三个重要属性：</h3><ul>
+<li><p>capacity - 作为一个内存块，Buffer有一个固定的大小值，也叫“capacity”.你只能往里写capacity个byte、long，char等类型。一旦Buffer满了，需要将其清空（通过读数据或者清除数据）才能继续写数据往里写数据。</p>
+</li>
+<li><p>position - 当你写数据到Buffer中时，position表示当前的位置。初始的position值为0.当一个byte、long等数据写到Buffer后， position会向前移动到下一个可插入数据的Buffer单元。position最大可为capacity – 1.</p>
+<p>当读取数据时，也是从某个特定位置读。当将Buffer从写模式切换到读模式，position会被重置为0. 当从Buffer的position处读取数据时，position向前移动到下一个可读的位置。</p>
+</li>
+<li><p>limit - 在写模式下，Buffer的limit表示你最多能往Buffer里写多少数据。 写模式下，limit等于Buffer的capacity。</p>
+<p>当切换Buffer到读模式时， limit表示你最多能读到多少数据。因此，当切换Buffer到读模式时，limit会被设置成写模式下的position值。换句话说，你能读到之前写入的所有数据（limit被设置成已写数据的数量，这个值在写模式下就是position）</p>
+</li>
+</ul>
+<p><img src="http://ifeve.com/wp-content/uploads/2013/06/buffers-modes.png" alt="img"></p>
+<h3 id="Buffer重要API"><a href="#Buffer重要API" class="headerlink" title="Buffer重要API :"></a>Buffer重要API :</h3><table>
+<thead>
+<tr>
+<th>功能</th>
+<th>buf.get()</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读</td>
+<td>buf.get()</td>
+<td>读取一个字节</td>
+</tr>
+<tr>
+<td></td>
+<td>channel.write(buf)</td>
+<td>读取buf中的数据，并写入channel</td>
+</tr>
+<tr>
+<td>写</td>
+<td>buf.put()</td>
+<td>向buf写入数据，有多个重载方法</td>
+</tr>
+<tr>
+<td></td>
+<td>channel.read(buf)</td>
+<td>读取channel中的数据，并写入buf</td>
+</tr>
+<tr>
+<td>清除</td>
+<td>buf.clear()</td>
+<td>清空整个缓存区</td>
+</tr>
+<tr>
+<td></td>
+<td>buf.compact()</td>
+<td>清除已经读过的数据</td>
+</tr>
+</tbody></table>
+<ul>
+<li>buf.get( )</li>
+</ul>
+<h2 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h2><p>Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。例如，在一个聊天服务器中。</p>
+<p><img src="http://ifeve.com/wp-content/uploads/2013/06/overview-selectors.png" alt="img"></p>
+<p>要使用Selector，得向Selector注册Channel，然后调用它的select()方法。这个方法会一直阻塞到某个注册的通道有事件就绪。一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">博客</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">nio</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yihuan18.github.io/2019/09/15/Java-NIO/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/16/java8中方法区的String及整型常量/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java8中方法区的String及整型常量
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/09/10/Mysql知识点整理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mysql知识点整理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet"href="//imsun.github.io/gitment/style/default.css"> 
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://yihuan18.github.io/2019/09/15/Java-NIO/",
+  owner: 'yihuan18',
+  repo: 'yihuan18.github.io',
+  oauth: {
+    client_id: 'de47c470de560347723b',
+    client_secret: '944a0b3867aabbbe9ab4f1a3d953265403fca13e',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -238,9 +476,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
