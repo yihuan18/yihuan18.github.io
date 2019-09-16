@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yihuan18.github.io">
   <title>jvm参数设置 | 兔窝|Yihuan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～">
+  <meta name="description" content="jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～ 内存区域 Java堆1234-Xmx #最大堆容量-Xms #最小堆容量-XX:+/-UseTLAB #是否使用Thread Local Allocation Buffer(TLAB)-XX:+HeapDumpOnOutOfMemoryError #内存异常时dump出当前的内存堆转储快照">
 <meta name="keywords" content="java,面试,jvm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jvm参数设置">
 <meta property="og:url" content="https://yihuan18.github.io/2019/09/16/jvm参数设置/index.html">
 <meta property="og:site_name" content="兔窝|Yihuan的博客">
-<meta property="og:description" content="jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～">
+<meta property="og:description" content="jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～ 内存区域 Java堆1234-Xmx #最大堆容量-Xms #最小堆容量-XX:+/-UseTLAB #是否使用Thread Local Allocation Buffer(TLAB)-XX:+HeapDumpOnOutOfMemoryError #内存异常时dump出当前的内存堆转储快照">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-16T13:11:13.686Z">
+<meta property="og:updated_time" content="2019-09-16T13:22:45.891Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jvm参数设置">
-<meta name="twitter:description" content="jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～">
+<meta name="twitter:description" content="jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～ 内存区域 Java堆1234-Xmx #最大堆容量-Xms #最小堆容量-XX:+/-UseTLAB #是否使用Thread Local Allocation Buffer(TLAB)-XX:+HeapDumpOnOutOfMemoryError #内存异常时dump出当前的内存堆转储快照">
   
     <link rel="alternative" href="/atom.xml" title="兔窝|Yihuan的博客" type="application/atom+xml">
   
@@ -180,12 +180,14 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>jvm辣么多参数，记起来太困难了，偷偷给自己总结一下，按需查询～</p>
+<h1 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h1><ul>
+<li>Java堆<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-Xmx <span class="comment">#最大堆容量</span></span><br><span class="line">-Xms <span class="comment">#最小堆容量</span></span><br><span class="line">-XX:+/-UseTLAB <span class="comment">#是否使用Thread Local Allocation Buffer(TLAB)</span></span><br><span class="line">-XX:+HeapDumpOnOutOfMemoryError <span class="comment">#内存异常时dump出当前的内存堆转储快照</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <a id="more"></a>
 
-<h1 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h1><ul>
-<li><p>Java堆</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-Xmx <span class="comment">#最大堆容量</span></span><br><span class="line">-Xms <span class="comment">#最小堆容量</span></span><br><span class="line">-XX:+/-UseTLAB <span class="comment">#是否使用Thread Local Allocation Buffer(TLAB)</span></span><br><span class="line">-XX:+HeapDumpOnOutOfMemoryError <span class="comment">#内存异常时dump出当前的内存堆转储快照</span></span><br></pre></td></tr></table></figure>
-</li>
+<ul>
 <li><p>方法区</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:PermSize</span><br><span class="line">-XX:MaxPermSize <span class="comment">#方法区大小</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -203,7 +205,7 @@
 <h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><ul>
 <li>新生代</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-Xmn <span class="comment">#新生代大小</span></span><br><span class="line">-XX:SurvivorRatio <span class="comment">#Eden与Survivor区的比例</span></span><br><span class="line">-XX:PretenureSizeThreshold <span class="comment">#晋升老年代对象大小</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-Xmn <span class="comment">#新生代大小</span></span><br><span class="line">-XX:SurvivorRatio <span class="comment">#Eden与Survivor区的比例</span></span><br><span class="line">-XX:PretenureSizeThreshold <span class="comment">#晋升老年代的对象大小</span></span><br><span class="line">-XX:MaxTenuringThreshold <span class="comment">#晋升到老年代的对象年龄</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>方法区回收（永久代）</li>
@@ -213,22 +215,27 @@
 <ul>
 <li>Serial</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:SurvivorRatio</span><br><span class="line">-XX:PretenureSizeThreshold</span><br><span class="line">-XX:HandlePromotionFailure</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseSerialGC <span class="comment">#使用Serial + SerialOld</span></span><br><span class="line">-XX:SurvivorRatio</span><br><span class="line">-XX:PretenureSizeThreshold</span><br><span class="line">-XX:HandlePromotionFailure</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>ParNew</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseConcMarkSweepGC <span class="comment">#设置CMS,默认使用ParNew作为新生代收集器</span></span><br><span class="line">-XX:+UseParNewGC</span><br><span class="line">-XX:ParallelGCThreads <span class="comment">#限制垃圾收集的线程数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseParNewGC <span class="comment">#使用ParNew + SerialOld</span></span><br><span class="line">-XX:ParallelGCThreads <span class="comment">#限制垃圾收集的线程数</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>Parallel Scavenge</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxGCPauseMillis <span class="comment">#垃圾回收最大停顿时间</span></span><br><span class="line">-XX:GCTimeRatio <span class="comment">#设置吞吐量大小</span></span><br><span class="line">-XX:+UseAdaptiveSizePolicy <span class="comment">#自适应，使用后无需指定新生代大小，比例等参数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ParNew中的所有参数，以及如下参数：</span></span><br><span class="line"></span><br><span class="line">-XX:+UseParallelGC <span class="comment">#使用ParallelScavenge + SerialOld</span></span><br><span class="line">-XX:MaxGCPauseMillis <span class="comment">#垃圾回收最大停顿时间</span></span><br><span class="line">-XX:GCTimeRatio <span class="comment">#设置吞吐量大小</span></span><br><span class="line">-XX:+UseAdaptiveSizePolicy <span class="comment">#自适应，使用后无需指定新生代大小，比例等参数</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ParallelOld</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseParallelOldGC <span class="comment">#使用ParallelScavenge + ParallelOld</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>CMS(Concurrent Mark Sweep)</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:CMSInitiatingOccupancyFraction <span class="comment">#触发老年代GC的内存占用比例</span></span><br><span class="line">-XX:+UseCMSCompactAtFullCollection <span class="comment">#FullGC时开启内存碎片的合并整理过程（默认开启）</span></span><br><span class="line">-XX:CMSFullGCsBeforeCompaction <span class="comment">#执行多少次FullGC后进行内存压缩（默认为0，即每次都会压缩）</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseConcMarkSweepGC <span class="comment">#使用ParNew + CMS + SerialOld</span></span><br><span class="line">-XX:CMSInitiatingOccupancyFraction <span class="comment">#触发老年代GC的内存占用比例</span></span><br><span class="line">-XX:HandlePromotionFailure <span class="comment">#是否允许担保失败</span></span><br><span class="line">-XX:+UseCMSCompactAtFullCollection <span class="comment">#FullGC时开启内存碎片的合并整理过程（默认开启）</span></span><br><span class="line">-XX:CMSFullGCsBeforeCompaction <span class="comment">#执行多少次FullGC后进行内存压缩（默认为0，即每次都会压缩）</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -522,11 +529,11 @@ gitment.render('gitment-ctn')
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color4">nio</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nio</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>
