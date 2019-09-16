@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://ifeve.com/wp-content/uploads/2013/06/buffers-modes.png">
 <meta property="og:image" content="http://ifeve.com/wp-content/uploads/2013/06/overview-selectors.png">
-<meta property="og:updated_time" content="2019-09-16T06:53:45.498Z">
+<meta property="og:updated_time" content="2019-09-16T11:36:12.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java NIO">
 <meta name="twitter:description" content="主要分析java nio的基础知识和关键组件">
@@ -265,9 +265,6 @@
 <td>清除已经读过的数据</td>
 </tr>
 </tbody></table>
-<ul>
-<li>buf.get( )</li>
-</ul>
 <h2 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h2><p>Selector允许单线程处理多个 Channel。如果你的应用打开了多个连接（通道），但每个连接的流量都很低，使用Selector就会很方便。例如，在一个聊天服务器中。</p>
 <p><img src="http://ifeve.com/wp-content/uploads/2013/06/overview-selectors.png" alt="img"></p>
 <p>要使用Selector，得向Selector注册Channel，然后调用它的select()方法。这个方法会一直阻塞到某个注册的通道有事件就绪。一旦这个方法返回，线程就可以处理这些事件，事件的例子有如新连接进来，数据接收等。</p>
@@ -551,7 +548,7 @@ gitment.render('gitment-ctn')
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nio</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,6 +557,10 @@ gitment.render('gitment-ctn')
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nio</a>
               </li>
              
               <li class="article-tag-list-item">

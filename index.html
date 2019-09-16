@@ -160,6 +160,217 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM从入门到放弃" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/16/JVM从入门到放弃/">JVM从入门到放弃</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/16/JVM从入门到放弃/" class="archive-article-date">
+  	<time datetime="2019-09-16T13:03:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="垃圾收集器总结"><a href="#垃圾收集器总结" class="headerlink" title="垃圾收集器总结"></a>垃圾收集器总结</h1><p><img src="/imgs/image-20190916210346672.png" alt="image-20190916210424179"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/16/JVM从入门到放弃/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-jvm参数设置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/16/jvm参数设置/">jvm参数设置</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/16/jvm参数设置/" class="archive-article-date">
+  	<time datetime="2019-09-16T11:09:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h1><ul>
+<li><p>Java堆</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-Xmx <span class="comment">#最大堆容量</span></span><br><span class="line">-Xms <span class="comment">#最小堆容量</span></span><br><span class="line">-XX:+/-UseTLAB <span class="comment">#是否使用Thread Local Allocation Buffer(TLAB)</span></span><br><span class="line">-XX:+HeapDumpOnOutOfMemoryError <span class="comment">#内存异常时dump出当前的内存堆转储快照</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>方法区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-XX:PermSize</span><br><span class="line">-XX:MaxPermSize <span class="comment">#方法区大小</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>虚拟机栈</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xss <span class="comment">#设置栈内存容量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>本地方法栈</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xoss <span class="comment">#设置本地方法栈大小（在hotspot中无效，因为不区分虚拟机栈和本地方法栈）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接内存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxDirectMemorySize <span class="comment">#设置最大直接内存大小</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h1 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h1><ul>
+<li>新生代</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-Xmn <span class="comment">#新生代大小</span></span><br><span class="line">-XX:SurvivorRatio <span class="comment">#Eden与Survivor区的比例</span></span><br><span class="line">-XX:PretenureSizeThreshold <span class="comment">#晋升老年代对象大小</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>方法区回收（永久代）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-Xnoclassgc <span class="comment">#是否对类进行回收</span></span><br><span class="line">-verbose:class</span><br><span class="line">-XX:+TraceClassLoading</span><br><span class="line">-XX:+TraceClassUnLoading <span class="comment">#查看类加载和卸载信息</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Serial</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:SurvivorRatio</span><br><span class="line">-XX:PretenureSizeThreshold</span><br><span class="line">-XX:HandlePromotionFailure</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ParNew</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:+UseConcMarkSweepGC <span class="comment">#设置CMS,默认使用ParNew作为新生代收集器</span></span><br><span class="line">-XX:+UseParNewGC</span><br><span class="line">-XX:ParallelGCThreads <span class="comment">#限制垃圾收集的线程数</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Parallel Scavenge</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:MaxGCPauseMillis <span class="comment">#垃圾回收最大停顿时间</span></span><br><span class="line">-XX:GCTimeRatio <span class="comment">#设置吞吐量大小</span></span><br><span class="line">-XX:+UseAdaptiveSizePolicy <span class="comment">#自适应，使用后无需指定新生代大小，比例等参数</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CMS(Concurrent Mark Sweep)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-XX:CMSInitiatingOccupancyFraction <span class="comment">#触发老年代GC的内存占用比例</span></span><br><span class="line">-XX:+UseCMSCompactAtFullCollection <span class="comment">#FullGC时开启内存碎片的合并整理过程（默认开启）</span></span><br><span class="line">-XX:CMSFullGCsBeforeCompaction <span class="comment">#执行多少次FullGC后进行内存压缩（默认为0，即每次都会压缩）</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/16/jvm参数设置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java8中方法区的String及整型常量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -180,6 +391,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>一直没有记住关于String在方法区的存储和基本类型的包装类在方法区的存储，所以写一篇博客来整理一下</p>
+        
+          <a class="article-more-a" href="/2019/09/16/java8中方法区的String及整型常量/#more">more >></a>
         
       
 
@@ -633,7 +847,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nio</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,6 +856,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nio</a>
               </li>
              
               <li class="article-tag-list-item">
