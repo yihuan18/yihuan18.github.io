@@ -9,7 +9,7 @@
   <title>JVM从入门到放弃 | 兔窝|Yihuan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="垃圾收集器总结">
-<meta name="keywords" content="java,面试,jvm">
+<meta name="keywords" content="面试,java,jvm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM从入门到放弃">
 <meta property="og:url" content="https://yihuan18.github.io/2019/09/16/JVM从入门到放弃/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="垃圾收集器总结">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://yihuan18.github.io/imgs/image-20190916210346672.png">
-<meta property="og:updated_time" content="2019-09-16T13:06:03.124Z">
+<meta property="og:updated_time" content="2019-09-17T07:39:10.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM从入门到放弃">
 <meta name="twitter:description" content="垃圾收集器总结">
@@ -182,6 +182,70 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="垃圾收集器总结"><a href="#垃圾收集器总结" class="headerlink" title="垃圾收集器总结"></a>垃圾收集器总结</h1><p><img src="/imgs/image-20190916210346672.png" alt="image-20190916210424179"></p>
+<a id="more"></a>
+
+<h1 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h1><h2 id="类加载流程"><a href="#类加载流程" class="headerlink" title="类加载流程"></a>类加载流程</h2><ul>
+<li><p>加载：获取class文件，将其中的<strong>静态存储结构</strong>转化为方法区的<strong>运行时数据结构</strong>，生成Class对象</p>
+</li>
+<li><p>验证：文件格式验证，元数据验证，字节码验证，符号引用验证（解析阶段发生）</p>
+</li>
+<li><p>准备：为类变量分配内存并设置初始值0，如果是static final则直接赋值</p>
+</li>
+<li><p>解析：将常量池中的符号引用替换为直接引用的过程</p>
+</li>
+<li><p>初始化：执行类构造器&lt;clinit()&gt;方法</p>
+</li>
+</ul>
+<blockquote>
+<p>clinit方法：编译器自动收集类变量赋值动作和static代码块语句合并产生的</p>
+<p>父类的clinit方法先于子类的clinit方法执行</p>
+</blockquote>
+<p>（解析过程有可能在初始化阶段后才完成）</p>
+<h2 id="什么时候会发生类初始化？"><a href="#什么时候会发生类初始化？" class="headerlink" title="什么时候会发生类初始化？"></a>什么时候会发生类初始化？</h2><ul>
+<li>new/getstatic/putstatic/invokestatic : new关键字实例化对象/读取或设置static字段/调用静态方法</li>
+<li>使用java.lang.reflect包进行反射调用的时候</li>
+<li>初始化子类的时候，首先初始化父类</li>
+<li>虚拟机启动时，初始化主类</li>
+<li>动态语言支持，java.lang.invoke.MethodHandle实例最后解析的结果REF_getStatic/REF_putStatic/REF_invokeStatic的方法句柄，该方法句柄需要首先进行初始化</li>
+</ul>
+<h2 id="不会初始化的情况"><a href="#不会初始化的情况" class="headerlink" title="不会初始化的情况"></a>不会初始化的情况</h2><ul>
+<li>通过子类引用父类的静态字段，不会导致子类初始化</li>
+<li>通过数组定义来引用类，不会触发此类的初始化</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SuperClass sca = <span class="keyword">new</span> SuperClass[<span class="number">10</span>]; <span class="comment">//不会导致SuperClass的初始化</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>常量的使用不会触发定义常量的类的初始化</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstClass</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String HELLO = <span class="string">"hello world"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NotInitialization</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    System.out.println(ConstClass.HELLO); <span class="comment">//不会导致ConstClass的初始化</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口的初始化不会触发父接口的初始化</li>
+</ul>
+<h1 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h1><table>
+<thead>
+<tr>
+<th>类加载器</th>
+<th>加载内容</th>
+<th>使用说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动类加载器</td>
+<td>加载<java_home>\lib目录中的类库</java_home></td>
+<td>无法直接引用</td>
+</tr>
+<tr>
+<td>扩展类加载器</td>
+<td>加载<java_home>\lib\ext目录中的类库</java_home></td>
+<td>开发者可直接使用</td>
+</tr>
+<tr>
+<td>应用程序类加载器</td>
+<td>getSystemClassLoader()返回，也叫系统类加载器   加载用户类路径上的所有类库</td>
+<td>程序默认类加载器,开发者可直接使用</td>
+</tr>
+</tbody></table>
 
       
 
@@ -226,11 +290,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -305,8 +369,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2019/09/16/jvm参数设置/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jvm参数设置</div>
+    <a href="/2019/09/16/JVM参数设置及调优工具/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JVM参数设置及调优工具</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -445,6 +509,22 @@ gitment.render('gitment-ctn')
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">博客</a>
               </li>
              
@@ -453,23 +533,7 @@ gitment.render('gitment-ctn')
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nio</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
             
             <div class="clearfix"></div>
