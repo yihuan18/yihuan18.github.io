@@ -181,48 +181,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="价格门户项目"><a href="#价格门户项目" class="headerlink" title="价格门户项目"></a>价格门户项目</h1><h2 id="项目功能"><a href="#项目功能" class="headerlink" title="项目功能"></a>项目功能</h2><p>构建定价执行协同门户，供应商、采购、营销场三方协同，实现一键定价。提供商家，小二一个统一的调价入口，包含自动算法调价。</p>
-<h2 id="主要流程"><a href="#主要流程" class="headerlink" title="主要流程"></a>主要流程</h2><p>商品分组 -&gt; 分组绑定价格策略 -&gt; 根据价格策略生成调价单 -&gt; 发起审批流程 -&gt; 完成调价</p>
-<h2 id="负责模块"><a href="#负责模块" class="headerlink" title="负责模块"></a>负责模块</h2><p>分组领域</p>
-<h2 id="技术关键点"><a href="#技术关键点" class="headerlink" title="技术关键点"></a>技术关键点</h2><h3 id="分组模型"><a href="#分组模型" class="headerlink" title="分组模型"></a>分组模型</h3><ul>
-<li>一级分组：根据商品属性分组（季节性，经营属性，价格敏感性等）</li>
-<li>二级分组：根据小二岗位进行分组</li>
-<li>三级分组：商品类目</li>
-</ul>
-<h3 id="数据库存储模型"><a href="#数据库存储模型" class="headerlink" title="数据库存储模型"></a>数据库存储模型</h3><ul>
-<li>商品组表使用parent_id关联父级分组</li>
-<li>商品表使用group_id进行分表</li>
-</ul>
-<h2 id="使用的中间件"><a href="#使用的中间件" class="headerlink" title="使用的中间件"></a>使用的中间件</h2><h3 id="Pandora-boot"><a href="#Pandora-boot" class="headerlink" title="Pandora boot"></a>Pandora boot</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>阿里的Pandora Boot的核心是<a href="https://www.cnblogs.com/springboot-wuqian/p/9558176.html" target="_blank" rel="noopener">Pandora</a>，Pandora boot是Pandora与Spring Boot结合的产物，能够在IDE中启动Pandora环境。</p>
-<blockquote>
-<p>Pandora，中文名潘多拉，简单的来说就是一个类隔离容器。对外以taobao-hsf.sar这样的sar包的形式对外呈现。它要解决的问题就是依赖冲突问题，包括单不仅以下几点：</p>
-<ul>
-<li>二方包、三方包冲突<br>由于版本不一致可能导致应用起不来。</li>
-<li>冲突排查浪费大量时间<br>应用起不来的时候可能只是应用开发自己折腾半天在排包，但如果是二方包冲突，那么中间件团队可能就要花大量时间在答疑上面，和应用开发一起折腾了。</li>
-<li>应用难以保持稳定<br>折腾半天应用终于跑起来了，但是更可怕的就是现在能跑，到了某个点某个场景可能就出bug了。</li>
-<li>中间件升级困难<br>如果要实时升级中间件到推荐版本，但是发现并没有那么容易，应用中引入了十个八个中间件，隔三差五其中一个中间件就有小版本更新，每天盯着中间件的更新情况，那还有时间关心业务的开发了。</li>
-</ul>
-<p><strong>padora的作用</strong></p>
-<ul>
-<li>实现类隔离，提供稳定的运行环境<br>Pandora实现了应用与中间件之间隔离、中间件与中间件之间隔离，保证了类的正确加载，而不会让依赖关系与依赖加载出现不一一对应的情况。</li>
-<li>中间件平滑升级<br>由于应用服务器会优先加载Pandora的类，因此只要升级Pandora中的插件即可，无需对应用中的pom.xml进行修改。只需要在aone上面提交一个“HSF变更”即可。</li>
-<li>中间件统一管理<br>Pandora会统一管理中间件的启动、初始化以及资源回收等一系列操作。</li>
-</ul>
-</blockquote>
-<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>根本依据是类对象是由ClassLoader和类的权限定名，pandora使用不同的moduleClassLoader加载不同的中间件，从而实现隔离。</p>
-<h3 id="tddl"><a href="#tddl" class="headerlink" title="tddl"></a>tddl</h3><p>开源分布式数据库中间件，Tddl主要部署在ibatis、mybatis或者其他ORM框架之下，JDBC Driver之上。整个中间件实现了JDBC规范，所以可以将Tddl当做普通数据源实例并且注入到各种ORM框架中使用。</p>
-<p><img src="/imgs/image-20190917202310225.png" alt="image-20190917202310225"></p>
-<h4 id="三层数据源结构"><a href="#三层数据源结构" class="headerlink" title="三层数据源结构"></a>三层数据源结构</h4><p><img src="/imgs/image-20190917202510293.png" alt="image-20190917202510293"></p>
-<ul>
-<li><p>Matrix<br>该层的功能在于分库分表路由，SQL语句的解释、优化和执行，事务的管理规则的管理，各个子表查询出来结果集的Merge等。（<a href="https://www.cnblogs.com/study-everyday/p/8629100.html" target="_blank" rel="noopener">一致性hash</a>）</p>
-</li>
-<li><p>Group</p>
-<p>该层的作用在于数据库读写分离，基本上主数据库负责读写，备份数据库只负责读；主备切换状态对调后备库变为主库，主库变为备库；权重的选择 根据权重选择要去读哪些库；数据保护，数据库down掉后的线程保护， 数据库挂掉后的线程保护，不会因为一个数据库挂掉导致所有线程卡死。</p>
-</li>
-<li><p>Atom层</p>
-<p>Atom 模块真正和物理数据库交互，提供数据库配置动态修改能力。<br>改层负责动态创建，添加，减少数据源。管理着底层的数据库IP，连接等信息；底层对物理数据库做了代理，对单库的JDBC做了一层封装，执行底层单库的SQL；线程数、执行次数等状态的统计等。</p>
-</li>
-</ul>
-<h3 id="Metaq"><a href="#Metaq" class="headerlink" title="Metaq"></a>Metaq</h3>
+        
+          <a class="article-more-a" href="/2019/09/17/实习项目总结/#more">more >></a>
+        
       
 
       
@@ -905,14 +866,6 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -925,11 +878,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">nio</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">nio</a>
               </li>
             
             <div class="clearfix"></div>
