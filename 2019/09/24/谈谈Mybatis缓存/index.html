@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yihuan18.github.io">
-  <title>Hello World | 兔窝|Yihuan的博客</title>
+  <title>谈谈Mybatis缓存 | 兔窝|Yihuan的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="java,vim,spring,springboot,程序媛">
+  <meta name="description" content="Mybatis用了那么久，知道Mytabis里面有缓存吗">
+<meta name="keywords" content="java,面试,mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://yihuan18.github.io/2019/09/10/hello-world/index.html">
+<meta property="og:title" content="谈谈Mybatis缓存">
+<meta property="og:url" content="https://yihuan18.github.io/2019/09/24/谈谈Mybatis缓存/index.html">
 <meta property="og:site_name" content="兔窝|Yihuan的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="Mybatis用了那么久，知道Mytabis里面有缓存吗">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-10T09:40:25.689Z">
+<meta property="og:image" content="https://yihuan18.github.io/imgs/image-20190924125451387.png">
+<meta property="og:image" content="https://yihuan18.github.io/imgs/6e38df6a.jpg">
+<meta property="og:image" content="https://yihuan18.github.io/imgs/28399eba.png">
+<meta property="og:updated_time" content="2019-09-24T05:47:48.620Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="谈谈Mybatis缓存">
+<meta name="twitter:description" content="Mybatis用了那么久，知道Mytabis里面有缓存吗">
+<meta name="twitter:image" content="https://yihuan18.github.io/imgs/image-20190924125451387.png">
   
     <link rel="alternative" href="/atom.xml" title="兔窝|Yihuan的博客" type="application/atom+xml">
   
@@ -159,40 +163,76 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-谈谈Mybatis缓存" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      谈谈Mybatis缓存
     </h1>
   
 
         
-        <a href="/2019/09/10/hello-world/" class="archive-article-date">
-  	<time datetime="2019-09-10T01:21:00.205Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+        <a href="/2019/09/24/谈谈Mybatis缓存/" class="archive-article-date">
+  	<time datetime="2019-09-24T03:18:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+        <p>Mybatis用了那么久，知道Mytabis里面有缓存吗</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h1 id="Mybatis缓存"><a href="#Mybatis缓存" class="headerlink" title="Mybatis缓存"></a>Mybatis缓存</h1><p>Mybatis 中有一级缓存和二级缓存，缓存机制如下图。</p>
+<p>这里有一篇美团技术团队关于<a href="https://tech.meituan.com/2018/01/19/mybatis-cache.html" target="_blank" rel="noopener">mytabis缓存机制</a>的介绍</p>
+<p><img src="/imgs/image-20190924125451387.png" alt="image-20190924125451387"></p>
+<h1 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h1><h2 id="一级缓存介绍"><a href="#一级缓存介绍" class="headerlink" title="一级缓存介绍"></a>一级缓存介绍</h2><p>一级缓存是指 SqlSession 级别的缓存，当在同一个 SqlSession 中进行相同的 SQL 语句查询时，第二次以<br>后的查询不会从数据库查询，而是直接从缓存中获取，一级缓存最多缓存 1024 条 SQL。</p>
+<p>第一次发出一个查询 sql，sql 查询结果写入 sqlsession 的一级缓存中，缓存使用的数据结构是一 个 map。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key:MapperID + offset + <span class="built_in">limit</span> + Sql + 所有的入参 </span><br><span class="line">value:用户信息</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>同一个 sqlsession 再次发出相同的 sql，就从缓存中取出数据。如果两次中间出现 commit 操作 (修改、添加、删除)，本 sqlsession 中的一级缓存区域全部清空，下次再去缓存中查询不到所 以要从数据库查询，从数据库查询到再写入缓存。 </p>
+<p><img src="/imgs/6e38df6a.jpg" alt="img"></p>
+<h2 id="一级缓存配置"><a href="#一级缓存配置" class="headerlink" title="一级缓存配置"></a>一级缓存配置</h2><p>我们来看看如何使用MyBatis一级缓存。开发者只需在MyBatis的配置文件中，添加如下语句，就可以使用一级缓存。共有两个选项，<code>SESSION</code>或者<code>STATEMENT</code>，默认是<code>SESSION</code>级别，即在一个MyBatis会话中执行的所有语句，都会共享这一个缓存。一种是<code>STATEMENT</code>级别，可以理解为缓存只对当前执行的这一个<code>Statement</code>有效。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"localCacheScope"</span> <span class="attr">value</span>=<span class="string">"SESSION"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h2 id="一级缓存总结"><a href="#一级缓存总结" class="headerlink" title="一级缓存总结"></a>一级缓存总结</h2><ol>
+<li>MyBatis一级缓存的生命周期和SqlSession一致。</li>
+<li>MyBatis一级缓存内部设计简单，只是一个没有容量限定的HashMap，在缓存的功能性上有所欠缺。</li>
+<li>MyBatis的一级缓存最大范围是SqlSession内部，有多个SqlSession或者分布式的环境下，数据库写操作会引起脏数据，建议设定缓存级别为Statement。</li>
+</ol>
+<h1 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h1><h2 id="二级缓存介绍"><a href="#二级缓存介绍" class="headerlink" title="二级缓存介绍"></a>二级缓存介绍</h2><p>二级缓存的范围是 mapper 级别(mapper 同一个命名空间)，mapper 以命名空间为单位创建缓存数据结构，结构是 map。mybatis 的二级缓存是通过 CacheExecutor 实现的。CacheExecutor 其实是 Executor 的代理对象。所有的查询操作，在 CacheExecutor 中都会先匹配缓存中是否存 在，不存在则查询数据库。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key:Statement Id + offset + <span class="built_in">limit</span> + Sql + 所有的入参</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p><img src="/imgs/28399eba.png" alt="img"></p>
+<h2 id="二级缓存配置"><a href="#二级缓存配置" class="headerlink" title="二级缓存配置"></a>二级缓存配置</h2><p>具体使用需要配置: </p>
+<ol>
+<li><p>Mybatis 全局配置中启用二级缓存配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"cacheEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在对应的 Mapper.xml 中配置 cache 节点<br>cache标签用于声明这个namespace使用二级缓存，并且可以自定义配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+</blockquote>
+<p>type：cache使用的类型，默认是PerpetualCache，这在一级缓存中提到过。<br>eviction： 定义回收的策略，常见的有FIFO，LRU。<br>flushInterval： 配置一定时间自动刷新缓存，单位是毫秒。<br>size： 最多缓存对象的个数。<br>readOnly： 是否只读，若配置可读写，则需要对应的实体类能够序列化。<br>blocking： 若缓存中找不到对应的key，是否会一直blocking，直到有对应的数据进入缓存。</p>
+<blockquote>
+</blockquote>
+<p>cache-ref代表引用别的命名空间的Cache配置，两个命名空间的操作使用的是同一个Cache。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache-ref</span> <span class="attr">namespace</span>=<span class="string">"mapper.StudentMapper"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在对应的 select 查询节点中添加 useCache=true </li>
+</ol>
+<h2 id="二级缓存总结"><a href="#二级缓存总结" class="headerlink" title="二级缓存总结"></a>二级缓存总结</h2><ol>
+<li>MyBatis的二级缓存相对于一级缓存来说，实现了<code>SqlSession</code>之间缓存数据的共享，同时粒度更加的细，能够到<code>namespace</code>级别，通过Cache接口实现类不同的组合，对Cache的可控性也更强。</li>
+<li>MyBatis在多表查询时，极大可能会出现脏数据，有设计上的缺陷，安全使用二级缓存的条件比较苛刻。</li>
+<li>在分布式环境下，由于默认的MyBatis Cache实现都是基于本地的，分布式环境下必然会出现读取到脏数据，需要使用集中式缓存将MyBatis的Cache接口实现，有一定的开发成本，直接使用Redis、Memcached等分布式缓存可能成本更低，安全性也更高。</li>
+</ol>
 
       
 
@@ -232,6 +272,25 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -282,7 +341,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yihuan18.github.io/2019/09/10/hello-world/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yihuan18.github.io/2019/09/24/谈谈Mybatis缓存/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,15 +355,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/10/Hexo博客搭建与美化/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hexo博客搭建与美化
-        
-      </div>
-    </a>
   
+    <a href="/2019/09/17/实习项目总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">实习项目总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -341,7 +396,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://yihuan18.github.io/2019/09/10/hello-world/",
+  id: "https://yihuan18.github.io/2019/09/24/谈谈Mybatis缓存/",
   owner: 'yihuan18',
   repo: 'yihuan18.github.io',
   oauth: {
