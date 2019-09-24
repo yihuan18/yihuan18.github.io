@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://yihuan18.github.io/imgs/image-20190924125451387.png">
 <meta property="og:image" content="https://yihuan18.github.io/imgs/6e38df6a.jpg">
 <meta property="og:image" content="https://yihuan18.github.io/imgs/28399eba.png">
-<meta property="og:updated_time" content="2019-09-24T05:47:48.620Z">
+<meta property="og:updated_time" content="2019-09-24T05:51:03.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="谈谈Mybatis缓存">
 <meta name="twitter:description" content="Mybatis用了那么久，知道Mytabis里面有缓存吗">
@@ -218,9 +218,7 @@
 </li>
 </ol>
 <blockquote>
-</blockquote>
 <p>type：cache使用的类型，默认是PerpetualCache，这在一级缓存中提到过。<br>eviction： 定义回收的策略，常见的有FIFO，LRU。<br>flushInterval： 配置一定时间自动刷新缓存，单位是毫秒。<br>size： 最多缓存对象的个数。<br>readOnly： 是否只读，若配置可读写，则需要对应的实体类能够序列化。<br>blocking： 若缓存中找不到对应的key，是否会一直blocking，直到有对应的数据进入缓存。</p>
-<blockquote>
 </blockquote>
 <p>cache-ref代表引用别的命名空间的Cache配置，两个命名空间的操作使用的是同一个Cache。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">cache-ref</span> <span class="attr">namespace</span>=<span class="string">"mapper.StudentMapper"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
@@ -496,14 +494,6 @@ gitment.render('gitment-ctn')
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">博客</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
@@ -512,15 +502,23 @@ gitment.render('gitment-ctn')
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">博客</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">nio</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
